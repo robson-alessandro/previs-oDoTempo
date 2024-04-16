@@ -1,0 +1,59 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Francois+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Yeseva+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Francois+One&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Yeseva+One&display=swap');
+:root{
+    --letra-titulo :"Kanit", sans-serif;
+    --letra-secundaria:"Poppins", sans-serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    background: none;
+    
+}
+
+body{
+    background-color: #edf4e9;
+}
+
+.titulo{
+    font-size: 3.5rem;
+    text-align: center;
+    font-family: var(--letra-titulo);
+}
+
+img{
+    width: 10rem;
+}
+
+.dia-atual{
+    font-family: var(--letra-secundaria);
+    font-weight: 700;
+    font-style: normal;
+
+}
+
+.card-dias{
+    font-family: var(--letra-secundaria);
+    font-weight: 700;
+    font-style: normal;
+    display: flex;
+    width: 100vh;
+    gap: 1.5rem;
+}
+
+.card-dia{
+    background: #dae9d3;
+    text-align: center;
+    border-radius: 9px;
+    width: 15rem;
+    height: 18rem;
+    box-shadow: 10px 5px 5px black;
+}
+.dia-data{
+    font-size: 2rem;
+}
+ .dia-temperatura{
+    font-size: 1.3rem;
+ }
