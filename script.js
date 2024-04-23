@@ -5,12 +5,15 @@ import {previsoes} from "./previsoes.js";
 const datas = document.querySelectorAll('.dia-data')
 const listaComDias = document.querySelectorAll('.dia-temperatura')
 const listaImagem = document.querySelectorAll('.imagem-previsao')
+const dia1Bot = document.querySelector('.card_dia1')
+
 
 //essa função usa a ferramenta Date para criar as datas que sera usado no site e as coloca no site.
 function colocarDatas(){
     let data = new Date()
     let dia = data.getDate()
     let pulardia = 0
+    
 
     datas.forEach((elemento) => {
         elemento.textContent = `${ dia + pulardia}` 
@@ -40,3 +43,11 @@ function colocarTemperatura(){
 // faz o chamado de cada função para o prenchimento do site com temperatura, data e imagem de cada dia.
 colocarTemperatura()
 colocarDatas()
+
+dia1Bot.addEventListener("click",() =>{
+    const valor = document.getElementById('data_dia1').innerHTML
+    document.getElementById('data_principal').innerHTML = valor
+})
+
+
+
