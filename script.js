@@ -2,9 +2,9 @@
 import {previsoes} from "./previsoes.js";
 
 // sao decalarados os elementos html que seram usado no programa.
-const datas = document.querySelectorAll('.dia-data')
-const listaComDias = document.querySelectorAll('.dia-temperatura')
-const listaImagem = document.querySelectorAll('.imagem-previsao')
+const datas = document.querySelectorAll('.dia_data')
+const listaComDias = document.querySelectorAll('.dia_temperatura')
+const listaImagem = document.querySelectorAll('.imagem_previsao')
 const dia1Bot = document.querySelector('.card_dia1')
 const dia2Bot = document.querySelector('.card_dia2')
 const dia3Bot = document.querySelector('.card_dia3')

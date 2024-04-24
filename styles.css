@@ -26,32 +26,54 @@ img{
     width: 10rem;
 }
 
-.dia-atual{
+.card_principal{
+    margin: 0 2rem;
+    width: 35vh !important;
     font-family: var(--letra-secundaria);
     font-weight: 700;
     font-style: normal;
 
 }
 
-.card-dias{
+.card_dias{
+    margin: 2rem 0;
     font-family: var(--letra-secundaria);
     font-weight: 700;
     font-style: normal;
     display: flex;
+    justify-content:space-between;
     gap: 1rem;
 }
 
-.card-dia{
+.card_dia{
     background: #dae9d3;
     text-align: center;
     border-radius: 9px;
     width: 12rem;
-    height: 18rem;
+    height: 19rem;
     box-shadow: 10px 5px 5px black;
+    font-size: 1.4rem;
 }
-.dia-data{
+.dia_data{
     font-size: 2rem;
 }
- .dia-temperatura{
-    font-size: 1.4rem;
+
+.card_dia:hover{
+    scale:1.1 ;
+}
+
+@media screen and (max-width: 768px) {
+    .card_dias{
+        display: block;
+        width: 35vh;
+        justify-content: center;
+        margin:0 auto;
+        gap: 1rem;
+    }
+    .card_principal{
+        margin: 0 auto;
+    }
+    .card_dia{
+        margin-top: 1rem;
+    }
 }
