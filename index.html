@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,57 +10,21 @@
 </head>
 <body>
     <H1 class="titulo">previsão do tempo</H1>
+    <div class="conteudo_busca">
+        <input class="resultado_cidade" type="text" placeholder="digite a cidade">
+        <button class="botao_buscar">buscar</button>
+    </div>
+    
 
-    <div class="card_principal card_dia">
+    <div class="card_principal card_dia " style="display: none;">
         <h2 id="data_principal">hoje</h2>
-        <p>temperatura</p>
+        <p class="nome_cidade">temperatura</p>
         <p id="temperatura_max_principal">temperatura max</p>
-        <p id="temperatura_min_principal">temperatura min</p>
-        <img class="img_principal" src="imagens/sol.png" alt="sol">
+        <img class="img_principal" src="imagens/céu limpo.png" alt="sol">
     </div>
 
     <section class="card_dias">
-        <div  class="card_dia card_dia1">
-            <h2 id="data_dia1" class="dia_data">dia um</h2>
-            <p id="dia1_temperatura" class="dia_temperatura ">temperatura min/max</p>
-            <img class="imagem-previsao img1" src="imagens/sol.png" alt="sol">
-        </div>
-
-        <div class="card_dia card_dia2">
-            <p id="data_dia2" class="dia_data">dia dois</p>
-            <p id="dia2_temperatura" class="dia_temperatura">temperatura min/max</p>
-            <img class="imagem-previsao img2" src="imagens/sol-nuvem.png" alt="sol">
-        </div>
-
-        <div class="card_dia card_dia3">
-            <p id="data_dia3" class="dia_data">dia tres</p>
-            <p id="dia3_temperatura" class="dia_temperatura">temperatura min/max</p>
-            <img class="imagem-previsao img3" src="imagens/sol.png" alt="sol">
-        </div>
-
-        <div class="card_dia card_dia4">
-            <p id="data_dia4" class="dia_data">dia quatro</p>
-            <p id="dia4_temperatura" class="dia_temperatura">temperatura min/max</p>
-            <img class="imagem-previsao img4" src="imagens/nublado.png" alt="sol">
-        </div>
-
-        <div class="card_dia card_dia5">
-            <p id="data_dia5" class="dia_data">dia cinco</p>
-            <p id="dia5_temperatura" class="dia_temperatura">temperatura min/max</p>
-            <img class="imagem-previsao img5" src="imagens/chuva-forte.png" alt="sol">
-        </div>
-
-        <div class="card_dia card_dia6">
-            <p id="data_dia6"class="dia_data">dia seis</p>
-            <p id="dia6_temperatura" class="dia_temperatura">temperatura min/max</p>
-            <img class="imagem-previsao img6" src="imagens/chuva.png" alt="sol">
-        </div>
-
-        <div class="card_dia card_dia7">
-            <p id="data_dia7" class="dia_data">dia sete</p>
-            <p id="dia7_temperatura" class="dia_temperatura">temperatura min/max</p>
-            <img class="imagem-previsao img7" src="imagens/sol.png" alt="sol">
-        </div>
+        
     </section>
 
     

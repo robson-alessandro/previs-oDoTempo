@@ -1,105 +1,91 @@
-// faz o importe de uma lista de objetos que contem a temperatura max, min e a imagem que ira ser colocada em cada data. 
-import {previsoes} from "./previsoes.js";
-
 // sao decalarados os elementos html que seram usado no programa.
-const datas = document.querySelectorAll('.dia_data')
-const listaComDias = document.querySelectorAll('.dia_temperatura')
-const listaImagem = document.querySelectorAll('.imagem_previsao')
-const dia1Bot = document.querySelector('.card_dia1')
-const dia2Bot = document.querySelector('.card_dia2')
-const dia3Bot = document.querySelector('.card_dia3')
-const dia4Bot = document.querySelector('.card_dia4')
-const dia5Bot = document.querySelector('.card_dia5')
-const dia6Bot = document.querySelector('.card_dia6')
-const dia7Bot = document.querySelector('.card_dia7')
+const tempCardPrincipal = document.querySelector('#temperatura_max_principal')
+const sectionCardDias = document.querySelector('.card_dias')
+const botBuscar = document.querySelector('.botao_buscar')
+const cidade = document.querySelector('.resultado_cidade')
+const nomeCidade = document.querySelector('.nome_cidade')
+const imagemPrincipal = document.querySelector('.img_principal')
+const divPrincipal = document.querySelector('.card_principal')
 
+let listaDias = []
+let listaObjetoDia = []
 
-// fução que coloca as informções no card principal
-function colocarDadosCardPrincipal(dia){
-    let data = document.getElementById(`data_dia${dia}`).innerHTML
-    document.getElementById('data_principal').innerHTML = data
-
-    let stringTempMaxMin= document.getElementById(`dia${dia}_temperatura`).innerHTML
-    const dividirStringTemperatura = stringTempMaxMin.split(' ')
-    const tempMax =dividirStringTemperatura[2]
-    const tempMin =dividirStringTemperatura[5]
-    document.getElementById('temperatura_max_principal').innerHTML =`max: ${tempMax} ` 
-    document.getElementById('temperatura_min_principal').innerHTML = `min: ${tempMin} `
-    
-    const imagemPrevisaoDia = document.querySelector(`.img${dia}`)
-    const img = imagemPrevisaoDia.getAttribute('src')
-    const imagemPrincipal = document.querySelector('.img_principal')
-    imagemPrincipal.setAttribute('src',img)
+const Dia = {
+    init: function(data, tempMax, tempMin,imagem){
+        this.data = data
+        this.tempMax = tempMax
+        this.tempMin = tempMin
+        this.imagem = imagem
+    }
 }
 
-// todos os card com as previsões que estão servindo como botão, ao clicar em dia no site é colocado as informções desse dia no card principal
-dia1Bot.addEventListener("click",() =>{
-    const dia = 1
-    colocarDadosCardPrincipal(dia)
+botBuscar.addEventListener("click",()=>{
+    let resultado = cidade.value
+    criaTemperaturaDiaDeHoje(resultado)
+    criarTemperaturaVariosDias(resultado)
+    cidade.value = ' '
+
 })
 
-dia2Bot.addEventListener("click",() =>{
-    const dia = 2
-    colocarDadosCardPrincipal(dia)
-})
+function criarHtml(lista){
 
-dia3Bot.addEventListener("click",() =>{
-    const dia = 3
-    colocarDadosCardPrincipal(dia)
-})
-
-dia4Bot.addEventListener("click",() =>{
-    const dia = 4
-    colocarDadosCardPrincipal(dia)
-})
-
-dia5Bot.addEventListener("click",() =>{
-    const dia = 5
-    colocarDadosCardPrincipal(dia)
-})
-
-dia6Bot.addEventListener("click",() =>{
-    const dia = 6
-    colocarDadosCardPrincipal(dia)
-})
-
-dia7Bot.addEventListener("click",() =>{
-    const dia = 7
-    colocarDadosCardPrincipal(dia)
-})
-
-//essa função usa a ferramenta Date para criar as datas que sera usado no site e as coloca no site.
-function colocarDatas(){
-    let data = new Date()
-    let dia = data.getDate()
-    let pulardia = 0
+    lista.forEach((element)=>{
+        let div = document.createElement('div')
+        let paragrafo1 = document.createElement('p')
+        paragrafo1.innerHTML = element.data
+        paragrafo1.setAttribute('class', 'dia_data')
+        let paragrafo2 = document.createElement('p')
+        paragrafo2.innerHTML = `max: ${element.tempMax}<br>
+        min: ${element.tempMin}`
+        paragrafo2.setAttribute('class','dia_temperatura')
+        let imagem = document.createElement('img')
+        imagem.setAttribute('class','imagem-previsao')
+        imagem.setAttribute('src',`imagens/${element.imagem}.png`)
+        div.appendChild(paragrafo1)
+        div.appendChild(paragrafo2)
+        div.appendChild(imagem)
+        div.setAttribute('class',"card_dia")
+        sectionCardDias.appendChild(div)
+    })
     
-
-    datas.forEach((elemento) => {
-        elemento.textContent = `${ dia + pulardia}` 
-        pulardia += 1
-    });
 }
 
-// essa função coloca no site as informações de temperatura e a imagem da previsão usando como base a lista que foi importada do arquivo previsoes.
-function colocarTemperatura(){
-    let posicao = 0
-    //faz a troca da imagem da previsão de cada dia da semana usando um forEach para percorrer um lista com as imagens de cada dia.
-    listaImagem.forEach((elemento) =>{
-        let imagem = previsoes[posicao]
-        elemento.setAttribute('src',`/imagens/${imagem.imagemPrevisao}.png` )
-        posicao += 1 
+async function criarTemperaturaVariosDias(cidade){
+    const key = '89c300e1df23f0d4cbf38f1f2fe48e4b'
+    let dados = await fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + cidade +"&appid=" + key + "&lang=pt_br" +"&units=metric").then(resposta => resposta.json() )
+    dados.list.forEach((element) => {
+        let data = `${element.dt_txt[8]+element.dt_txt[9]}/${element.dt_txt[5]+element.dt_txt[6]}`
+       
+        if(listaDias.includes(data)){
+            listaObjetoDia.forEach((x) =>{
+                if(x.data == data){
+                    if(x.tempMax < element.main.temp){
+                        x.tempMax = element.main.temp
+                        x.imagem = element.weather[0].description
+                    }
+                    if(x.tempMin > element.main.temp){
+                        x.tempMin = element.main.temp
+                        x.imagem = element.weather[0].description
+                    }
+                }
+            })
+        }else{
+            let objDia = Object.create(Dia)
+            objDia.init(data, element.main.temp, element.main.temp, element.weather[0].description)
+            listaObjetoDia.push(objDia)
+            listaDias.push(data)
+        }
     })
 
-    //faz a troca da temperatura max e min da previsão de cada dia da semana usando um forEach para percorrer um lista com as temperaturas de cada dia.
-    posicao = 0
-    listaComDias.forEach((elemento) =>{
-        let previsaoDoDia = previsoes[posicao]
-        elemento.innerHTML = `temperatura max ${previsaoDoDia.tempMax} <br>min  ${previsaoDoDia.temMin} `
-        posicao += 1
-    }
-)}
+    criarHtml(listaObjetoDia)
+}
 
-// faz o chamado de cada função para o prenchimento do site com temperatura, data e imagem de cada dia.
-colocarTemperatura()
-colocarDatas()
+async function criaTemperaturaDiaDeHoje(cidade){
+    const key = '89c300e1df23f0d4cbf38f1f2fe48e4b'
+    let dados = await fetch("https://api.openweathermap.org/data/2.5/weather?q=" + cidade + "&appid=" + key + "&lang=pt_br" +"&units=metric").then(resposta => resposta.json())
+    nomeCidade.innerHTML = dados.name
+    tempCardPrincipal.innerHTML = `${dados.main.temp}°C`
+    imagemPrincipal.setAttribute('src',`imagens/${dados.weather[0].description}.png `)
+    divPrincipal.removeAttribute('style')
+}
+

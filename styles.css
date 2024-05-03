@@ -8,18 +8,29 @@
 *{
     margin: 0;
     padding: 0;
-    background: none;
-    
+    background: none; 
 }
 
 body{
     background-color: #edf4e9;
 }
-
+.botao_buscar{
+    width: 4em;
+    height: 2em;
+    border-radius: 10px;
+    background-color: #dae9d3 ;
+    font-weight: 600;
+}
 .titulo{
     font-size: 3.5rem;
     text-align: center;
     font-family: var(--letra-titulo);
+}
+.resultado_cidade{
+    width: 20em;
+    height: 2em;
+    border-radius: 10px;
+    margin: 1em 0 1em 1em ;
 }
 
 img{
@@ -41,7 +52,7 @@ img{
     font-weight: 700;
     font-style: normal;
     display: flex;
-    justify-content:space-between;
+    justify-content:baseline;
     gap: 1rem;
 }
 
@@ -63,6 +74,9 @@ img{
 }
 
 @media screen and (max-width: 768px) {
+    body{
+        display: block;
+    }
     .card_dias{
         display: block;
         width: 35vh;
@@ -76,4 +90,5 @@ img{
     .card_dia{
         margin-top: 1rem;
     }
+   
 }
