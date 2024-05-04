@@ -58,6 +58,7 @@ async function criarTemperaturaVariosDias(cidade){
     
     const key = '89c300e1df23f0d4cbf38f1f2fe48e4b'
     let dados = await fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + cidade +"&appid=" + key + "&lang=pt_br" +"&units=metric").then(resposta => resposta.json() )
+    
     dados.list.forEach((element) => {
         let data = `${element.dt_txt[8]+element.dt_txt[9]}/${element.dt_txt[5]+element.dt_txt[6]}`
        
@@ -81,6 +82,7 @@ async function criarTemperaturaVariosDias(cidade){
             listaDias.push(data)
         }
     })
+    console.log(listaObjetoDia)
     criarHtml(listaObjetoDia)
 
 }
