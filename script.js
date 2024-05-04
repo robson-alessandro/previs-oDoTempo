@@ -21,10 +21,12 @@ const Dia = {
 
 botBuscar.addEventListener("click",()=>{
     let resultado = cidade.value
+    while(sectionCardDias.firstChild){
+        sectionCardDias.removeChild(sectionCardDias.firstChild)
+    }
     criaTemperaturaDiaDeHoje(resultado)
     criarTemperaturaVariosDias(resultado)
     cidade.value = ' '
-
 })
 
 function criarHtml(lista){
@@ -51,6 +53,9 @@ function criarHtml(lista){
 }
 
 async function criarTemperaturaVariosDias(cidade){
+    listaObjetoDia = []
+    listaDias = []
+    
     const key = '89c300e1df23f0d4cbf38f1f2fe48e4b'
     let dados = await fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + cidade +"&appid=" + key + "&lang=pt_br" +"&units=metric").then(resposta => resposta.json() )
     dados.list.forEach((element) => {
@@ -76,8 +81,8 @@ async function criarTemperaturaVariosDias(cidade){
             listaDias.push(data)
         }
     })
-
     criarHtml(listaObjetoDia)
+
 }
 
 async function criaTemperaturaDiaDeHoje(cidade){
