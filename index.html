@@ -9,13 +9,14 @@
     <title>previsão</title>
 </head>
 <body>
+    <!-- cria o titulo e o input para a busca da cidade  -->
     <H1 class="titulo">previsão do tempo</H1>
     <div class="conteudo_busca">
         <input class="resultado_cidade" type="text" placeholder="digite a cidade">
         <button class="botao_buscar">buscar</button>
     </div>
     
-
+    <!-- cria o card que mostra a previsão para o dia de hoje para a cidade  -->
     <div class="card_principal card_dia " style="display: none;">
         <h2 id="data_principal">hoje</h2>
         <p class="nome_cidade">temperatura</p>
@@ -23,6 +24,7 @@
         <img class="img_principal" src="imagens/céu limpo.png" alt="sol">
     </div>
 
+    <!-- essa section é criada pelo javascript com a previsão para os proximos dias para a localização  -->
     <section class="card_dias">
         
     </section>

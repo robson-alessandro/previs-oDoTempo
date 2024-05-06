@@ -7,9 +7,12 @@ const nomeCidade = document.querySelector('.nome_cidade')
 const imagemPrincipal = document.querySelector('.img_principal')
 const divPrincipal = document.querySelector('.card_principal')
 
+/*cria duas listas, listaDias armazena as data que iram ser mostradas as previsões , listaObejetoDia armazena 
+as previsões em forma de objeto */
 let listaDias = []
 let listaObjetoDia = []
 
+//criada a estrutura do objeto dia que receberar os dados das previsões 
 const Dia = {
     init: function(data, tempMax, tempMin,imagem){
         this.data = data
@@ -18,6 +21,9 @@ const Dia = {
         this.imagem = imagem
     }
 }
+
+/*cria a ação de click no botão de busca, limapa o html caso ja esta feito uma busca antes,
+ faz a chamada das duas funções para buscar os dados nas apis*/
 
 botBuscar.addEventListener("click",()=>{
     let resultado = cidade.value
@@ -29,6 +35,8 @@ botBuscar.addEventListener("click",()=>{
     cidade.value = ' '
 })
 
+
+// esta funçõa cria os o elementos html para preencher a pagina com as previsões, recebe a lista de objetos dias com os dados
 function criarHtml(lista){
 
     lista.forEach((element)=>{
@@ -52,6 +60,8 @@ function criarHtml(lista){
     
 }
 
+/* faz o cahamado para a api que retorna a previsão para a cidade num intervalo de 3 horas , os dados são tratados e divididos em temperatura minima
+e maxima para cada dia e depois é cahamado a função para prencher o html*/
 async function criarTemperaturaVariosDias(cidade){
     listaObjetoDia = []
     listaDias = []
@@ -87,6 +97,7 @@ async function criarTemperaturaVariosDias(cidade){
 
 }
 
+//faz o cahamado para a api que traz as previsões para a data de hoje, cria os elementos html e preenche o card principal
 async function criaTemperaturaDiaDeHoje(cidade){
     const key = '89c300e1df23f0d4cbf38f1f2fe48e4b'
     let dados = await fetch("https://api.openweathermap.org/data/2.5/weather?q=" + cidade + "&appid=" + key + "&lang=pt_br" +"&units=metric").then(resposta => resposta.json())

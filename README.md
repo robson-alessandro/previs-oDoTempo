@@ -1,2 +1,4 @@
-um pagina na qual é mostrado a previsão de cada dia da semana.
-conforme estou aprendendo mais sobre as linguagens estou modificando a pagina e adicionando mais funções e melhorando o codigo.
+-um pagina na qual é mostrado a previsão de cada dia da semana.
+-esta sendo utilizado uma api para buscar a previsão das cidades e apresentadas no html
+-a api retorna varios arrays com a previsão a cada 3 horas para a localidade informada, entao dependendo do horario acessados a quantidade de dias informados pode mudar. como o site mostra a penas a temperatura maxima e minima de cada dia os dados precisão ser divididos para depois serem apresentados no site.
+-conforme estou aprendendo mais sobre as linguagens estou modificando a pagina e adicionando mais funções e melhorando o codigo.
